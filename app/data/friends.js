@@ -2,7 +2,7 @@
 var friendsArray = [
     {
         name: "Daphne",
-        photo: "images/daphne.jpg",
+        photo: "https://badvixen.files.wordpress.com/2013/05/daphne-scooby-doo-vector-1-500x500.jpg",
         scores: [
             5,
             1,
@@ -18,7 +18,7 @@ var friendsArray = [
     },
     {
         name: "Fred",
-        photo: "images/Fred.jpg",
+        photo: "https://1.bp.blogspot.com/-8zAXHcgh8hQ/T9GwaaWtKeI/AAAAAAAAEfE/clU_lB5k5Gk/s1600/Scooby_doo_fred_characters_walpaper.png",
         scores: [
             3,
             2,
@@ -34,7 +34,7 @@ var friendsArray = [
     },
     {
         name: "Patrick",
-        photo: "images/patrick.jpg",
+        photo: "https://img1.wikia.nocookie.net/__cb20140511130607/super-smash-flash-3/images/e/e2/Patrick_Star_2.jpg",
         scores: [
             5,
             4,
@@ -50,7 +50,7 @@ var friendsArray = [
     },
     {
         name: "Sandy",
-        photo: "images/sandy.jpg",
+        photo: "https://www.wikihow.com/images/f/f3/Sandy-cheeks-color-Intro.jpg",
         scores: [
             4,
             3,
@@ -66,7 +66,7 @@ var friendsArray = [
     },
     {
         name: "Scooby",
-        photo: "images/scooby.jpg",
+        photo: "https://4.bp.blogspot.com/-6vIdY4ZxXGo/V5qiuOU5oZI/AAAAAAAALrI/vqwt1eSTOigxEp07QD7Z70m6O02Tc68XwCLcB/s1600/Scooby_Doo_-_Scooby_Doo_Mysery_Incorporated.png",
         scores: [
             5,
             3,
@@ -82,7 +82,7 @@ var friendsArray = [
     },
     {
         name: "Scrappy",
-        photo: "images/scrappy.jpg",
+        photo: "https://upload.wikimedia.org/wikipedia/ro/4/4b/Scrappy-doo.jpg",
         scores: [
             1,
             5,
@@ -98,7 +98,7 @@ var friendsArray = [
     },
     {
         name: "Shaggy",
-        photo: "images/shaggy.jpg",
+        photo: "https://pbs.twimg.com/profile_images/3752139484/18cfebbb98af2d28807ffada43351106_400x400.jpeg",
         scores: [
             4,
             3,
@@ -114,7 +114,7 @@ var friendsArray = [
     },
     {
         name: "Spongebob",
-        photo: "images/spongebob.jpg",
+        photo: "https://hylery.files.wordpress.com/2015/06/spongebob-with-logo.jpg",
         scores: [
             4,
             2,
@@ -130,7 +130,7 @@ var friendsArray = [
     },
     {
         name: "Squidward",
-        photo: "images/squidward.jpg",
+        photo: "https://abbyedwards1.files.wordpress.com/2014/03/squidward_design_2.jpg",
         scores: [
             5,
             2,
@@ -146,7 +146,7 @@ var friendsArray = [
     },
     {
         name: "Velma",
-        photo: "images/velma.jpg",
+        photo: "https://dressupsandmessups.files.wordpress.com/2011/10/velma.jpg",
         scores: [
             5,
             3,
