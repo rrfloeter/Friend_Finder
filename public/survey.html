@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>FriendFinder</title>
+  <title>Friend Finder</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
@@ -214,13 +214,82 @@
     <div>
       </br>
     </div>
-    <button type="submit" class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
+    <button type="submit" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModal"
+      id="submit">Submit</button>
 
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Your Best Match</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4>Can you be best friends?</h4>
+            <h5 id="MatchedName"></h5>
+            <img id="MatchedPic" src="" alt="No Image" width=200px>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <hr>
   <footer class="footer">
     <div class="container">
-      <p><a href="/routing/apiRoutes.js">API Routes</a> | <a href="/routing/htmlRoutes.js">HTML Routes</a>
+      <p><a href="/api/friends">API Table Link </a> | <a href="https://github.com/rrfloeter/Friend_Finder">GitHub
+          Repo</a></p>
     </div>
   </footer>
+
+
+
+  <script type="text/javascript">
+
+    $("#submit").on('click', function (event) {
+      event.preventDefault();
+
+      var NewFriend = {
+        name: $("#name").val(),
+        photo: $("#photo").val(),
+        question1: $("#q1").val().trim(),
+        question2: $("#q2").val().trim(),
+        question3: $("#q3").val().trim(),
+        question4: $("#q4").val().trim(),
+        question5: $("#q5").val().trim(),
+        question6: $("#q6").val().trim(),
+        question7: $("#q7").val().trim(),
+        question8: $("#q8").val().trim(),
+        question9: $("#q9").val().trim(),
+        question10: $("#q10").val().trim()
+      };
+      console.log(NewFriend);
+      var currentURL = window.location.origin;
+
+      $.post(currentURL + "/api/friends", NewFriend, function (data) {
+        $("#MatchedName").text(data.name);
+        $("#matchPic").attr("src", data.photo);
+      });
+
+      $(".Modal").modal();
+    });
+
+
+
+
+
+
+
+
+
+  </script>
+
 </body>
+
+</html>
