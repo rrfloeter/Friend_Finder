@@ -251,42 +251,22 @@
 
 
   <script type="text/javascript">
-
-    $("#submit").on('click', function (event) {
-      event.preventDefault();
-
-      var NewFriend = {
-        name: $("#name").val(),
-        photo: $("#photo").val(),
-        question1: $("#q1").val().trim(),
-        question2: $("#q2").val().trim(),
-        question3: $("#q3").val().trim(),
-        question4: $("#q4").val().trim(),
-        question5: $("#q5").val().trim(),
-        question6: $("#q6").val().trim(),
-        question7: $("#q7").val().trim(),
-        question8: $("#q8").val().trim(),
-        question9: $("#q9").val().trim(),
-        question10: $("#q10").val().trim()
-      };
-      console.log(NewFriend);
-      var currentURL = window.location.origin;
-
-      $.post(currentURL + "/api/friends", NewFriend, function (data) {
-        $("#MatchedName").text(data.name);
-        $("#matchPic").attr("src", data.photo);
-      });
-
-      $(".Modal").modal();
-    });
-
-
-
-
-
-
-
-
+    var newFriend = {
+      name: $("#name").val().trim(),
+      Picture: $("#photo").val().trim(),
+      scores: [
+        $("#q1").val(),
+        $("#q2").val(),
+        $("#q3").val(),
+        $("#q4").val(),
+        $("#q5").val(),
+        $("#q6").val(),
+        $("#q7").val(),
+        $("#q8").val(),
+        $("#q9").val(),
+        $("#q10").val(),
+      ]
+    }
 
   </script>
 

@@ -11,26 +11,31 @@ module.exports = function (app) {
 
     //get user inputs
     app.post("/api/friends", function (req, res) {
-        var useradd = req.body;
-        var totaldiff = 100;
-        var friendname;
-        var friendphoto;
+        var NewScores = req.body.scores;
+        var score = [];
+        var fcount = 0;
+        var bestmatch = 0;
 
+        //run through current friendlist scores
         for (var i = 0; i < friendsData.length; i++) {
             var diff = 0;
-            for (var j = 0; j < useradd.length; j++) {
-                diff += Math.abs(friendsData[i].useradd[j] - useradd[j]);
-            }
-            if (diff < totaldiff) {
-                friendname = friendsData[i].name;
-                friendphoto = friendsData[i].photo;
-                totaldiff = diff;
+            for (var j = 0; j < NewScores.length; j++) {
+                diff += (Math.abs(parseInt(friendsData[i].scores[j]) - parseInt(NewScores[j])));
             }
         }
 
-        friendsData.push(useradd);
+        //loop through - add new friend to friends object array
+        score.push(useradd);
 
-		res.json({friendname: friendname, friendphoto: friendphoto});
+        for (var i = 0; i < score.length; i++) {
+            if (score[i] <= score[bestMatch]) {
+                bestMatch = i;
+            }
+        }
 
+        var bff = friendsData[bestMatch];
+        res.json(bff);
+
+        friendsData.push(req.body);
     });
 };
