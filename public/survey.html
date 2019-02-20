@@ -214,9 +214,15 @@
     <div>
       </br>
     </div>
-    <button type="submit" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModal"
-      id="submit">Submit</button>
+    <button type="submit" class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
+    <hr>
 
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/friends">API Table Link </a> | <a href="https://github.com/rrfloeter/Friend_Finder">GitHub
+            Repo</a></p>
+      </div>
+    </footer>
     <!-- Modal -->
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -229,9 +235,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <h4>Can you be best friends?</h4>
+            <h4>Your new Best Friend!</h4>
             <h5 id="MatchedName"></h5>
-            <img id="MatchedPic" src="" alt="No Image" width=200px>
+            <img id="MatchedPic" src="" alt style = "height:110px">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Done</button>
@@ -240,34 +246,69 @@
       </div>
     </div>
   </div>
-  <hr>
-  <footer class="footer">
-    <div class="container">
-      <p><a href="/api/friends">API Table Link </a> | <a href="https://github.com/rrfloeter/Friend_Finder">GitHub
-          Repo</a></p>
-    </div>
-  </footer>
-
-
 
   <script type="text/javascript">
-    var newFriend = {
-      name: $("#name").val().trim(),
-      Picture: $("#photo").val().trim(),
-      scores: [
-        $("#q1").val(),
-        $("#q2").val(),
-        $("#q3").val(),
-        $("#q4").val(),
-        $("#q5").val(),
-        $("#q6").val(),
-        $("#q7").val(),
-        $("#q8").val(),
-        $("#q9").val(),
-        $("#q10").val(),
-      ]
+
+    var config = {
+      '.chosen-select': {},
+      '.chosen-select-deselect': { allow_single_deselect: true },
+      '.chosen-select-no-single': { disable_search_threshold: 10 },
+      '.chosen-select-no-results': { no_results_text: "Nothing found" },
     }
 
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+
+    $("#submit").on("click", function (event) {
+      event.preventDefault();
+
+      function validateForm() {
+        var valid = true;
+        $(".form-control").each(function () {
+          if ($(this).val() === "") {
+            valid = false;
+          }
+        });
+
+        $(".chosen-select").each(function () {
+          if ($(this).val() === "") {
+            valid = false;
+          }
+        });
+        return valid;
+      }
+
+      if (validateForm()) {
+        var userinput = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+        };
+
+        $.post("/api/friends", userinput, function (data) {
+          console.log(data);
+          $("#MatchedName").text(data.MatchedName);
+          $("#MatchedPic").attr("src", data.MatchedPic);
+          $("#Modal").modal("toggle");
+        });
+      } else {
+        alert("Please fill out fields before submitting");
+      }
+
+      return false;
+    });
   </script>
 
 </body>

@@ -9,33 +9,31 @@ module.exports = function (app) {
         res.json(friendsData);
     });
 
-    //get user inputs
+    //add new entry from user
     app.post("/api/friends", function (req, res) {
-        var NewScores = req.body.scores;
-        var score = [];
-        var fcount = 0;
-        var bestmatch = 0;
+        var input = req.body;
 
-        //run through current friendlist scores
+        var response = input.scores;
+        console.log(response);
+
+        var MatchedName = ' ';
+        var MatchedPic = ' ';
+        var diff = 100;
+
         for (var i = 0; i < friendsData.length; i++) {
-            var diff = 0;
-            for (var j = 0; j < NewScores.length; j++) {
-                diff += (Math.abs(parseInt(friendsData[i].scores[j]) - parseInt(NewScores[j])));
+            var difference = 0;
+            for (var y = 0; y < response.length; y++) {
+                difference += Math.abs(friendsData[i].scores[y] - response[y]);
+            }
+
+            if (difference < diff) {
+                diff = difference;
+                MatchedName = friendsData[i].name;
+                MatchedPic = friendsData[i].photo;
             }
         }
 
-        //loop through - add new friend to friends object array
-        score.push(useradd);
-
-        for (var i = 0; i < score.length; i++) {
-            if (score[i] <= score[bestMatch]) {
-                bestMatch = i;
-            }
-        }
-
-        var bff = friendsData[bestMatch];
-        res.json(bff);
-
-        friendsData.push(req.body);
+        friendsData.push(input);
+        res.json({ status: 'OK', MatchedName: MatchedName, MatchedPic: MatchedPic });
     });
 };
